@@ -1,4 +1,6 @@
 PhotoWander::Application.routes.draw do
+  root 'rallies#index' #トップページ
+  
   resources :stamps
 
   resources :checkpoints
