@@ -1,6 +1,10 @@
 PhotoWander::Application.routes.draw do
   root 'rallies#index' #トップページ
   
+  get 'login/'  => 'login#login_form' #ログインフォーム画面
+  post 'login/' => 'login#login_auth' #ログイン認証
+  get 'logout/' => 'login#logout' #ログアウト
+  
   resources :stamps
 
   resources :checkpoints
