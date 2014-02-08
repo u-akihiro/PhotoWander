@@ -51,6 +51,8 @@ end
 group :test do
   gem 'rake'
   gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
 
 # Use Heroku deploy
@@ -60,6 +62,7 @@ group :production do
   gem 'newrelic_rpm'
   gem 'unicorn'
 end
+
 
 # Use travis CI command
 gem 'travis'
