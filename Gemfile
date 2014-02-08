@@ -43,6 +43,9 @@ end
 # Use httpclient
 gem 'httpclient'
 
+# ENV setting file is config/application.yml
+gem 'figaro'
+
 # Use sqlite3 as the database for Active Record
 group :development do
   gem 'sqlite3'
