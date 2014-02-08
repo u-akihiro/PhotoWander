@@ -33,9 +33,6 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
@@ -58,9 +55,10 @@ end
 
 # Use Heroku deploy
 group :production do
-  gem 'rails_12factor'
+#  gem 'rails_12factor'
   gem 'pg'
   gem 'newrelic_rpm'
+  gem 'unicorn'
 end
 
 # Use travis CI command
