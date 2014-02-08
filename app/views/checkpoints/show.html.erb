@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ucode:</strong>
+  <%= @checkpoint.ucode %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @checkpoint.name %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @checkpoint.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @checkpoint.lng %>
+</p>
+
+<p>
+  <strong>Radius:</strong>
+  <%= @checkpoint.radius %>
+</p>
+
+<%= link_to 'Edit', edit_checkpoint_path(@checkpoint) %> |
+<%= link_to 'Back', checkpoints_path %>

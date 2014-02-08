@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>File name:</strong>
+  <%= @stamp.file_name %>
+</p>
+
+<p>
+  <strong>File type:</strong>
+  <%= @stamp.file_type %>
+</p>
+
+<p>
+  <strong>File size:</strong>
+  <%= @stamp.file_size %>
+</p>
+
+<p>
+  <strong>File width:</strong>
+  <%= @stamp.file_width %>
+</p>
+
+<p>
+  <strong>File height:</strong>
+  <%= @stamp.file_height %>
+</p>
+
+<p>
+  <strong>Checkpoint:</strong>
+  <%= @stamp.checkpoint_id %>
+</p>
+
+<p>
+  <strong>Entry card:</strong>
+  <%= @stamp.entry_card_id %>
+</p>
+
+<%= link_to 'Edit', edit_stamp_path(@stamp) %> |
+<%= link_to 'Back', stamps_path %>

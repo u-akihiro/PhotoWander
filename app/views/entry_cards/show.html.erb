@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Finish flag:</strong>
+  <%= @entry_card.finish_flag %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @entry_card.user_id %>
+</p>
+
+<p>
+  <strong>Rally:</strong>
+  <%= @entry_card.rally_id %>
+</p>
+
+<%= link_to 'Edit', edit_entry_card_path(@entry_card) %> |
+<%= link_to 'Back', entry_cards_path %>

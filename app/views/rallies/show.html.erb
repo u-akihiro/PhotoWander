@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @rally.title %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @rally.detail %>
+</p>
+
+<p>
+  <strong>Opening:</strong>
+  <%= @rally.opening %>
+</p>
+
+<p>
+  <strong>Ending:</strong>
+  <%= @rally.ending %>
+</p>
+
+<%= link_to 'Edit', edit_rally_path(@rally) %> |
+<%= link_to 'Back', rallies_path %>

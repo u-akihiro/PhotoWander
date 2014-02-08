@@ -1,0 +1,31 @@
+<h1>Listing entry_cards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Finish flag</th>
+      <th>User</th>
+      <th>Rally</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entry_cards.each do |entry_card| %>
+      <tr>
+        <td><%= entry_card.finish_flag %></td>
+        <td><%= entry_card.user_id %></td>
+        <td><%= entry_card.rally_id %></td>
+        <td><%= link_to 'Show', entry_card %></td>
+        <td><%= link_to 'Edit', edit_entry_card_path(entry_card) %></td>
+        <td><%= link_to 'Destroy', entry_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Entry card', new_entry_card_path %>

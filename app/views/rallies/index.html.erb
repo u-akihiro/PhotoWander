@@ -1,0 +1,33 @@
+<h1>Listing rallies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Detail</th>
+      <th>Opening</th>
+      <th>Ending</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rallies.each do |rally| %>
+      <tr>
+        <td><%= rally.title %></td>
+        <td><%= rally.detail %></td>
+        <td><%= rally.opening %></td>
+        <td><%= rally.ending %></td>
+        <td><%= link_to 'Show', rally %></td>
+        <td><%= link_to 'Edit', edit_rally_path(rally) %></td>
+        <td><%= link_to 'Destroy', rally, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rally', new_rally_path %>
