@@ -5,7 +5,7 @@
 NAME="Unicorn"
 ENV=production
 
-ROOT_DIR="/home/pyar6329/.jenkins/workspace"
+ROOT_DIR="/home/pyar6329/.jenkins/workspace/PhotoWander_production/photowander"
 
 PID="${ROOT_DIR}/tmp/pids/unicorn.pid"
 CONF="${ROOT_DIR}/config/unicorn.conf.rb"
