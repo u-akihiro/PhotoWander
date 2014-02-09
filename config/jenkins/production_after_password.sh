@@ -10,7 +10,7 @@ ENV=production
 ROOT_DIR="${WORKSPACE}"
 PID="${ROOT_DIR}/tmp/pids/unicorn.pid"
 CONF="${ROOT_DIR}/config/unicorn.conf.rb"
-CMD="bundle exec unicorn -c ${CONF} -E ${ENV} -D"
+CMD="bundle exec unicorn -c ${CONF} -E ${ENV}"
 if [ -e $PID ]; then
     echo "stop $NAME"
     kill -QUIT `cat ${PID}`
