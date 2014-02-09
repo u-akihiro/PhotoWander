@@ -55,7 +55,6 @@ end
 group :test do
   gem 'rake'
   gem 'rspec-rails'
-  gem 'pg'
   gem 'simplecov'
   gem 'simplecov-rcov'
 end
