@@ -1,3 +1,5 @@
 language: ruby
 rvm:
   - 2.0.0
+deploy:
+  curl -X POST "https://j.pyar.bz/job/PhotoWander(production)/build?token=TZxKK2UQCUD2ww6umeMzqwHDYfhJ3s"
