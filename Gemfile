@@ -47,9 +47,7 @@ gem 'httpclient'
 gem 'figaro'
 
 # Use sqlite3 as the database for Active Record
-group :development do
-  gem 'sqlite3'
-end
+gem 'sqlite3'
 
 # Use Travis CI tests
 group :test do
