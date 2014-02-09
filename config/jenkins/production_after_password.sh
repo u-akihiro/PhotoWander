@@ -1,5 +1,9 @@
 #!/bin/sh
 bundle exec rake db:migrate RAILS_ENV=production
+mkdir -p ${WORKSPACE}/tmp/pids
+mkdir ${WORKSPACE}/tmp/sockets
+mkdir ${WORKSPACE}/tmp/cache
+mkdir ${WORKSPACE}/tmp/sessions
 NAME="Unicorn"
 ENV=production
 ROOT_DIR="${WORKSPACE}/photowander"
