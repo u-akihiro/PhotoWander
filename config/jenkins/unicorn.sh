@@ -5,10 +5,10 @@
 NAME="Unicorn"
 ENV=production
 
-ROOT_DIR="/home/pyar6329/.jenkins/workspace/PhotoWander_production"
+ROOT_DIR="/var/www/PhotoWander"
 
 PID="${ROOT_DIR}/tmp/pids/unicorn.pid"
-CONF="${ROOT_DIR}/config/unicorn.conf.rb"
+CONF="${ROOT_DIR}/config/unicorn.rb"
 CMD="/home/pyar6329/.rbenv/shims/bundle exec ${ROOT_DIR}/.bundle/ruby/2.0.0/bin/unicorn -c ${CONF} -E ${ENV} -D"
 
 start()

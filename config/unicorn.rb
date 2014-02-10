@@ -6,14 +6,14 @@
 app_path = "/var/www/PhotoWander/current"
 
 # Set unicorn options
-worker_processes 1
+worker_processes 4
 preload_app true
 timeout 180
 listen "/tmp/unicorn_photowander.sock"
 listen 60284, :tcp_nopush => true
 
 # Spawn unicorn master worker for user apps (group: apps)
-user 'pyar6329', 'staff'
+user 'pyar6329'
 
 # Fill path to your app
 working_directory app_path

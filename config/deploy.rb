@@ -51,7 +51,6 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle .bundl
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-# set :default_env, { path: "/Users/pyar6329/.rbenv/shims/:$PATH" }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
@@ -64,7 +63,6 @@ namespace :deploy do
       # Your restart mechanism here, for example:
       # execute :mkdir, '-p', release_path.join('tmp')
       # execute :touch, release_path.join('tmp/restart.txt')
-      # invoke 'unicorn:restart'
     end
   end
 
@@ -88,11 +86,7 @@ namespace :deploy do
       if File.exist?("#{shared_path}/config/database.yml") then
         execute "rm #{shared_path}/config/database.yml"
       end
-      execute "ln -s /var/www/database.yml #{shared_path}/config/database.yml"
-      # puts ENV['PHOTOWANDER_DB_NAME']
-      # execute "echo $SHELL $PATH $PHOTOWANDER_DB_HOST"
-      # execute "source ~/.zprofile"
-      # execute "echo $SHELL $PATH $PHOTOWANDER_DB_HOST"
+      execute "ln -s /var/www/photowander_db.yml #{shared_path}/config/database.yml"
       # upload!('config/database.yml', "#{shared_path}/config/database.yml")
     end
   end
@@ -103,3 +97,6 @@ end
 
 after 'deploy:publishing', 'deploy:restart'
 after 'deploy:finished', 'unicorn:restart'
+
+#停止するとき
+#bundle exec cap production unicorn:stop
