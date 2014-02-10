@@ -64,7 +64,7 @@ namespace :deploy do
       # Your restart mechanism here, for example:
       # execute :mkdir, '-p', release_path.join('tmp')
       # execute :touch, release_path.join('tmp/restart.txt')
-      invoke 'unicorn:restart'
+      # invoke 'unicorn:restart'
     end
   end
 
@@ -99,7 +99,7 @@ namespace :deploy do
 
   before :starting, 'deploy:upload'
   # after :finishing, 'deploy:cleanup'
-
 end
 
 after 'deploy:publishing', 'deploy:restart'
+after 'deploy:finished', 'unicorn:restart'
