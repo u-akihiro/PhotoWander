@@ -49,6 +49,20 @@ gem 'figaro'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# Use capistrano to deploy
+group :development do
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-env'
+  # うまく動作しない
+  # gem 'sepastian-capistrano3-unicorn', :require => false
+  # gem 'capistrano-unicorn', require: false, github: 'inbeom/capistrano-unicorn', branch: 'capistrano3'
+  # Capistrano3では動作しない
+  # gem 'capistrano_colors'
+end
+
 # Use Travis CI tests
 group :test do
   gem 'rake'
