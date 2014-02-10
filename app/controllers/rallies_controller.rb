@@ -4,6 +4,9 @@ class RalliesController < ApplicationController
   # GET /rallies
   # GET /rallies.json
   def index
+    if current_user
+      @user = User.find(current_user.id)
+    end
     @rallies = Rally.all
   end
 
