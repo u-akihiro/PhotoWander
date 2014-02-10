@@ -25,6 +25,10 @@ role :db,  %w{pyar6329@localhost}
 # extended properties on the server.
 server 'localhost', user: 'pyar6329', roles: %w{app web db}, my_property: :my_value
 
+set :ssh_options, {
+  forward_agent: true,
+  port: 60015
+}
 
 # set :user, 'pyar6329'
 # set :port, 22
