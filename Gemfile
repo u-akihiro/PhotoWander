@@ -69,6 +69,8 @@ group :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'simplecov-rcov'
+  gem 'coveralls', :require => false
+  gem 'codeclimate-test-reporter', :require => nil
 end
 
 # Use Heroku deploy
