@@ -6,6 +6,6 @@ env:
   - "CODECLIMATE_REPO_TOKEN=f32c483f885a26107647bfb782270b0e4e32368d42aa3a20c2cbe60bfcbc0e19"
 script:
   - bundle exec spring rake db:drop db:create db:migrate
-  - bundle exec spring rspec spec
+  - bundle exec rspec spec
 after_success:
   "curl -X POST https://j.pyar.bz/job/PhotoWander_production/build?token=TZxKK2UQCUD2ww6umeMzqwHDYfhJ3s"

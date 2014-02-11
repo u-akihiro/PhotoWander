@@ -46,11 +46,16 @@ gem 'httpclient'
 # ENV setting file is config/application.yml
 gem 'figaro'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use travis CI command
+gem 'travis'
 
-# Use Spring
-gem 'spring'
+group :development, :test do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+  # Use Spring
+  gem 'spring'
+  gem 'spring-commands-rspec'
+end
 
 # Use capistrano to deploy
 group :development do
@@ -83,7 +88,3 @@ group :production do
   gem 'newrelic_rpm'
   gem 'unicorn'
 end
-
-
-# Use travis CI command
-gem 'travis'
