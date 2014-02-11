@@ -49,6 +49,9 @@ gem 'figaro'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# Use Spring
+gem 'spring'
+
 # Use capistrano to deploy
 group :development do
   gem 'capistrano', '~> 3.1.0'
