@@ -1,4 +1,6 @@
 PhotoWander::Application.routes.draw do
+  get "go_stamp_rally/index"
+  get "go_stamp_rally/detail"
   root 'rallies#index' #トップページ
   
   get 'login/'  => 'login#login_form' #ログインフォーム画面
