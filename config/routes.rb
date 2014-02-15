@@ -7,13 +7,13 @@ PhotoWander::Application.routes.draw do
   post 'login/' => 'login#login_auth' #ログイン認証
   get 'logout/' => 'login#logout' #ログアウト
   
-  get 'play/:rally_id' => 'play#index' 
+  get 'play/:rally_id' => 'play#index' #ラリーのプレイ画面
   
   resources :stamps
 
   resources :checkpoints
 
-  get 'entries/', to: 'entry_cards#entry_list'
+  get 'entries/', to: 'entry_cards#entry_list' #参加しているラリー一覧
   resources :entry_cards
 
   resources :rallies
