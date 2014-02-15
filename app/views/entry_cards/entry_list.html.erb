@@ -1,0 +1,7 @@
+<% @entry_cards.each do |entry_card| %>
+  <%= entry_card.rally.title %>
+  <%= entry_card.rally.detail %>
+  <%= entry_card.rally.opening %>
+  <%= entry_card.rally.ending %>
+  <%= link_to 'プレイ', controller: 'play', action: 'index', rally_id: entry_card.rally.id %>
+<% end %>

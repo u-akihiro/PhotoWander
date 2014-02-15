@@ -1,14 +1,19 @@
 PhotoWander::Application.routes.draw do
+  get "play/index"
+  get "play_rally/index"
   root 'rallies#index' #トップページ
   
   get 'login/'  => 'login#login_form' #ログインフォーム画面
   post 'login/' => 'login#login_auth' #ログイン認証
   get 'logout/' => 'login#logout' #ログアウト
   
+  get 'play/:rally_id' => 'play#index' 
+  
   resources :stamps
 
   resources :checkpoints
 
+  get 'entries/', to: 'entry_cards#entry_list'
   resources :entry_cards
 
   resources :rallies

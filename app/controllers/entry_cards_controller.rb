@@ -1,6 +1,11 @@
 class EntryCardsController < ApplicationController
   before_action :set_entry_card, only: [:show, :edit, :update, :destroy]
-
+  
+  def entry_list
+    @user = User.find(current_user.id)
+    @entry_cards = @user.entry_cards
+  end
+  
   # GET /entry_cards
   # GET /entry_cards.json
   def index
