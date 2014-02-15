@@ -1,8 +1,12 @@
+<%= render 'layouts/header' %>
+<div data-role="collapsibleset" data-theme="a" data-content-theme="a">
 <% @entry_cards.each do |entry_card| %>
-  <%= entry_card.rally.title %>
-  <%= entry_card.rally.detail %>
-  <%= entry_card.rally.opening %>
-  <%= entry_card.rally.ending %>
-  <%= link_to 'プレイ', controller: 'play', action: 'index', rally_id: entry_card.rally.id %>
-  <br>
+  <div data-role="collapsible">
+    <h3><%= entry_card.rally.title %><h3>
+    <p><%= entry_card.rally.detail %></p>
+    <p><%= entry_card.rally.opening %></p>
+    <p><%= entry_card.rally.ending %></p>
+    <%= link_to 'プレイ', controller: 'play', action: 'index', rally_id: entry_card.rally.id %>
+  </div>
 <% end %>
+<%= render 'layouts/footer' %>
