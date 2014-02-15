@@ -1,3 +1,4 @@
+<!-- jQuery mobileを適用するとファイルのアップロードが出来ない -->
 <%= render 'layouts/header'%>
 <ul data-role="listview" data-inset="true">
 <% @checkpoints.each do |checkpoint| %>
@@ -6,5 +7,3 @@
 </ul>
 <%= render 'form' %>
 <%= render 'layouts/footer' %>
-
-<%= debug @data %>
