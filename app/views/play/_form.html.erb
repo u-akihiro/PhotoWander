@@ -1,4 +1,4 @@
-<%= form_for(@stamp) do |f| %>
+<%= form_for(@stamp, html: {'data-ajax' => 'false'}) do |f| %>
   <div class="field">
     <%= f.file_field :pic, accept: 'image/*' %>
   </div>

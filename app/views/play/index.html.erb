@@ -1,5 +1,5 @@
-<!-- jQuery mobileを適用するとファイルのアップロードが出来ない -->
 <%= render 'layouts/header'%>
+<%= render 'map' %>
 <ul data-role="listview" data-inset="true">
 <% @user_card.checkpoints.each do |checkpoint| %>
 	<% unless checkpoint.stamp.nil?  %>
@@ -21,3 +21,5 @@
 </ul>
 <%= render 'form' %>
 <%= render 'layouts/footer' %>
+<%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false' %>
+<%= javascript_include_tag 'play/common.js' %>
