@@ -1,0 +1,2 @@
+showMsg = ->
+  alert 'rails'

@@ -31,6 +31,9 @@ PhotoWander::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # prevent accidents that AngularJS is broken by asset pipeline's rename
+  config.assets.js_compressor = Uglifier.new(mangle: false)
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
