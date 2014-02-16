@@ -1,64 +1,72 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
+  before_action :set_user, only: [:show]
 
   # GET /users/1
-  # GET /users/1.json
   def show
   end
 
-  # GET /users/new
+  # GET /account/entry/
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
-  def edit
-  end
-
-  # POST /users
-  # POST /users.json
+  # POST /account/save/
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    if @user.save
+      session[:user_id] = @user.id
+      move_to_top
+    else
+      respond_to do |f|
+        f.html {render action: 'new'}
       end
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+  # GET /account/edit/
+  def edit
+    if current_user
+      @user = User.find(current_user.id)    
+    else
+      move_to_top
+    end
+  end
+  
+  # PATCH/PUT /account/save/
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    if current_user
+      @user = User.find(current_user.id)
+      respond_to do |format|
+        if @user.update(user_params)
+          format.html { redirect_to @user, notice: '変更しました。' }
+        else
+          format.html { render action: 'edit' }
+        end
       end
+    else
+      move_to_top
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+  # 退会を確認する。
+  # GET /account/secede/
+  def secede_confirm
+    if current_user
+      render 'secede'
+    else
+      move_to_top  
     end
+  end
+  
+  # 退会をする(アカウントを削除する)
+  # POST /account/secede/
+  def secede
+    if current_user
+      user = User.find(current_user.id)
+      user.destroy
+      session[:user_id] = nil      
+      move_to_top
+    end  
   end
 
   private
@@ -66,9 +74,10 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
+       
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :mail, :password)
     end
+    
 end

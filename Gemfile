@@ -41,6 +41,9 @@ end
 
 # Use httpclient
 gem 'httpclient'
+gem 'validates_email_format_of'
+gem "activeresource"
+gem 'rails4_acts_as_paranoid'
 
 # Use sqlite3 as the database for Active Record
 group :development do

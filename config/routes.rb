@@ -1,9 +1,24 @@
 PhotoWander::Application.routes.draw do
   root 'rallies#index' #トップページ
   
-  get 'login/'  => 'login#login_form' #ログインフォーム画面
-  post 'login/' => 'login#login_auth' #ログイン認証
-  get 'logout/' => 'login#logout' #ログアウト
+  get  'login/'  => 'login#login_form' #ログインフォーム画面
+  post 'login/'  => 'login#login_auth' #ログイン認証
+  get  'logout/' => 'login#logout' #ログアウト
+  
+  #user
+  get  'account/entry/'  => 'users#new'
+  get  'account/secede/' => 'users#secede_confirm'
+  post 'account/secede/' => 'users#secede'
+  get  'account/edit/'   => 'users#edit'
+  post 'account/save/'   => 'users#create'
+  put  'account/save/'   => 'users#update'
+  
+  #admin
+  get  'admin/'        => 'admin#index'
+  get  'admin/create/' => 'admin#create'
+  
+  #api
+  get  'api/' => 'api#fetch'
   
   resources :stamps
 
@@ -13,7 +28,7 @@ PhotoWander::Application.routes.draw do
 
   resources :rallies
 
-  resources :users
+  #resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,177 @@
+<div class="header">
+  <h1 class="page-title">ラリーの作成</h1>
+</div>
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="row-fluid" style="border:none;">   
+
+<div class="block" style="border:none;">
+    
+    <select name="lists" id="lists">
+        <option value="">選択してください</option>
+    <% @rdf_type_lists.each do |type, name| %>
+        <option value="<%= type %>"><%= name %></option>
+    <% end %>
+    </select>
+      
+    <div id="map" style="width:100%; height:300px;"></div>
+    <div id="result_field" style="margin-top:20px;">
+        <table id="result" class="table table-bordered"></table>
+    </div>
+    <input type="hidden" name="offset" id="offset" value="0" />
+</div>
+
+</div>
+</div>
+</div>
+
+<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7"></script>
+<%= javascript_include_tag "gmaps.js" %>
+<script>
+
+var EntryItems = {
+    items: {},
+    add: function(item) {
+        if(this.items[item.ucode]) {
+            alert('既に登録済みです');
+            return ;
+        } else {        
+            this.items[item.ucode] = item;
+        }
+    },
+    remove: function(ucode) {
+        delete this.items[ucode];
+    },
+    find_all: function() {
+        return this.items;
+    },
+    find_by_ucode: function(ucode) {
+        return this.items[ucode];
+    }
+}
+
+var RallyMap = function() {
+    this.map = new GMaps({
+        div: '#map',
+        lat: 35.0042,
+        lng: 135.4601
+    });
+};
+
+RallyMap.prototype.addMarker = function(items) {
+    for(k in items) {
+        var item = items[k];
+        this.map.addMarker({
+            lat: item.lat,
+            lng: item.lng,
+            title: item.name,
+            details: {
+                ucode: item.ucode,
+                name: item.name,
+                lat: item.lat,
+                lng: item.lng
+            },
+            content: item.name,
+            click: function(e) {
+                var item = e.details;
+                if(confirm(item.name+'を登録しますか？')) {
+                    EntryItems.add(item);
+                }
+            }
+        });
+    }
+};
+
+$(document).ready(function() {
+    
+    var rallyMap = new RallyMap();
+    var lists = $('#lists');
+    var offset = $('#offset');
+    var LIMIT = 100;
+    
+    function getOffset() {
+        return offset.val();    
+    }
+    
+    function offsetDown() {
+        var offsetCount = offset.val();
+        return offset.val(offsetCount - LIMIT);
+    }
+    
+    function offsetUp() {
+        var offsetCount = offset.val();
+        return offset.val(offsetCount + LIMIT);
+    }
+    
+    function getJapanName(titles) {
+        if(!titles) return false;
+        var name = titles[0].value;
+        for(var i = 0; i < titles.length; i++) {
+            if(titles[i].lang == 'JA') {
+                name = titles[i].value;
+            }
+        }
+        return name; 
+    }
+    
+    function render(items) {
+        var html = '';
+        var header = '';
+        var body = '';
+        var titles = ['編集', '名所', '経緯', '緯度', '許可範囲'];
+        
+        for(var i = 0; i < titles.length; i++) {
+            header += '<th>'+titles[i]+'</th>';
+        }
+        
+        header = '<tr>'+header+'</tr>';
+        
+        for(k in items) {
+            body += '<tr>';
+            body += '<td>'+items[k].ucode+'</td>';
+            body += '<td>'+items[k].name+'</td>';
+            body += '<td>'+items[k].lat+'</td>';
+            body += '<td>'+items[k].lng;'</td>';
+            body += '<td>'+items[k].radius+'</td>';
+            body += '</tr>';
+        }
+        
+        html = header + body;
+        
+        $('#result').html(html);
+    };
+    
+    function itemParser(ucode, place) {
+        var item = {};
+        item.ucode = ucode;
+        item.name = getJapanName(place['http://smartercity.jp/ug#title']);
+        item.lat = place['http://www.w3.org/2003/01/geo/wgs84_pos#lat'][0].value;
+        item.lng = place['http://www.w3.org/2003/01/geo/wgs84_pos#long'][0].value;
+        item.radius = 300;
+        return item;
+    };
+    
+    lists.live('change', function() {
+        console.log(map);
+        if(!$(this).val().length > 0) return ;
+        var params = {
+          rdf_type: $(this).val(),
+          offset: getOffset(),
+          limit: 100  
+        };
+        $.get('/api/', params, function(data) {
+            var items = new Array;
+            for(var i = 0; i < data.places.length; i++) {
+                for(ucode in data.places[i]) {
+                    items.push(itemParser(ucode, data.places[i][ucode]));
+                }
+            }
+            render(items);
+            rallyMap.addMarker(items);
+            if(items.length) rallyMap.map.setCenter(items[0].lat, items[0].lng);
+        },'JSON');
+    });
+   
+});
+</script>

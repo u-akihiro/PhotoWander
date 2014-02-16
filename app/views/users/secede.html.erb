@@ -1,0 +1,14 @@
+<h2><%=current_user.name %>さん</h2>
+本当にアカウントを削除しますか？
+<%= form_tag("/account/secede/") do %>
+    <div class="errors">
+        <% if !@error.nil? %>
+            <p class="error"><%= @error %></p>
+        <% end %>
+    </div>
+
+    <div class="actions">
+        <%= submit_tag 'アカウントを削除する' %>
+    </div>
+
+<% end %>   

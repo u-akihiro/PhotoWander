@@ -17,7 +17,7 @@ class LoginController < ApplicationController
     if !@user.nil?
       #ログインに成功したら成功画面に移動する。
       session[:user_id] = @user.id
-      redirect_to :controller => 'rallies', :action => 'index'
+      move_to_top
     else
       #ログイン認証に失敗したら、ログインフォーム画面に移動する。
       render 'login'
@@ -28,7 +28,7 @@ class LoginController < ApplicationController
   # ログアウト
   def logout
     session[:user_id] = nil
-    render 'login'
+    move_to_top
   end
   
 end
