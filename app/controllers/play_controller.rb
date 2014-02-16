@@ -2,7 +2,8 @@ class PlayController < ApplicationController
   before_action :set_rally_id, only: [:index]
   
   def index
-    @checkpoints = User.find(current_user.id).entry_cards.find_by(rally_id: params[:rally_id]).rally.checkpoints
+    @user = User.find(current_user.id)
+    @user_card = @user.entry_cards.find(:first)
     @stamp = Stamp.new
   end
   

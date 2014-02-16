@@ -1,8 +1,22 @@
 <!-- jQuery mobileを適用するとファイルのアップロードが出来ない -->
 <%= render 'layouts/header'%>
 <ul data-role="listview" data-inset="true">
-<% @checkpoints.each do |checkpoint| %>
-  <li><%= checkpoint.name %><br></li>
+<% @user_card.checkpoints.each do |checkpoint| %>
+	<% unless checkpoint.stamp.nil?  %>
+		<li data-icon="check">
+			<!-- チェック済み -->
+			<a href="">
+				<%= checkpoint.name %>
+			</a>
+		</li>
+	<% else %>
+		<li>
+			<!-- まだ -->
+			<a href="">
+				<%= checkpoint.name %>
+			</a>
+		</li>
+	<% end %>
 <% end %>
 </ul>
 <%= render 'form' %>
