@@ -75,6 +75,9 @@ PhotoWander::Application.configure do
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
+  # prevent accidents that AngularJS is broken by asset pipeline's rename
+  config.assets.js_compressor = Uglifier.new(mangle: false)
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 end

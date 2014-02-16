@@ -1,10 +1,16 @@
+# encoding: utf-8
+
 PhotoWander::Application.routes.draw do
-  root 'rallies#index' #トップページ
-  
+  root 'go_stamp_rally#index' #トップページ
+  get 'detail/' => 'go_stamp_rally#detail' #rallyの一覧を表示
+  get 'api/rally-lists' => 'go_stamp_rally#rally_lists' #rallyListのjsonを返す
+  # root 'rallies#index' #トップページ
+  get 'rallies/' => 'rallies#index'
+
   get 'login/'  => 'login#login_form' #ログインフォーム画面
   post 'login/' => 'login#login_auth' #ログイン認証
   get 'logout/' => 'login#logout' #ログアウト
-  
+
   resources :stamps
 
   resources :checkpoints
