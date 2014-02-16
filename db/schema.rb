@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208160500) do
+ActiveRecord::Schema.define(version: 20140213100629) do
 
   create_table "checkpoints", force: true do |t|
     t.string   "ucode"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140208160500) do
     t.integer  "radius"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rally_id"
   end
 
   create_table "entry_cards", force: true do |t|
