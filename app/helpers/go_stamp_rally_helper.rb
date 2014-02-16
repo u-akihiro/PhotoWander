@@ -26,7 +26,7 @@ module GoStampRallyHelper
   def self.test_fetch
     httpClient = HTTPClient.new
     begin
-      data = httpClient.get_content('https://dl.dropboxusercontent.com/u/16268979/json/jaran.json')
+      data = httpClient.get_content('https://dl.dropboxusercontent.com/u/16268979/json/rally_lists.json')
       return data
     rescue HTTPClient::BadResponseError => e
     rescue HTTPClient::TimeoutError => e

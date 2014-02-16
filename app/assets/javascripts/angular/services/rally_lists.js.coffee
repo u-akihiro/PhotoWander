@@ -1,2 +1,0 @@
-showMsg = ->
-  alert 'rails'
