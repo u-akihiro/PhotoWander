@@ -1,9 +1,8 @@
-<h1>GoStampRally#index</h1>
-  <div ng-controller="PhoneListCtrl">
-    <div ng-repeat="rally in rallys">
-      <div data-role="controlgroup">
-        <a href="detail" data-role="button">{{ rally.rally_title }}</a>
-      </div>
+<div ng-controller="PhoneListCtrl">
+  <div ng-repeat="rally in rallys">
+    <div data-role="controlgroup">
+      <a href="detail" data-role="button">{{ rally.rally_title }}</a>
     </div>
   </div>
+</div>
 <%= javascript_include_tag "angular/services/rally_lists.js" %>
